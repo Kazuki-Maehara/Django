@@ -35,8 +35,6 @@ class Entry(models.Model):
         return self.headline
 
 
-
-
 # ---- For "Querying JSONField" ----"
 class Dog(models.Model):
     name = models.CharField(max_length=200)
