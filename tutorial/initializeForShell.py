@@ -2,7 +2,11 @@ from queriesLearning.models import Entry
 from queriesLearning.models import Blog
 from queriesLearning.models import Author
 from queriesLearning.models import Dog
+
+from polls.models import Question
+
 from django.db.models import F
+from django.db.models import Q
 import datetime
 from datetime import timedelta
 
@@ -52,7 +56,26 @@ from datetime import timedelta
 #     }
 # )
 
-print(Dog.objects.filter(data__breed='collie'))
-print(Dog.objects.filter(data__owner__name='Bob'))
-print(Dog.objects.filter(data__owner__other_pets__0__name='Fishy'))
-print(Dog.objects.filter(data__owner__isnull=True))
+# print(Dog.objects.filter(data__breed='collie'))
+# print(Dog.objects.filter(data__owner__name='Bob'))
+# print(Dog.objects.filter(data__owner__other_pets__0__name='Fishy'))
+# print(Dog.objects.filter(data__owner__isnull=True))
+
+# ---- has_key ----
+# print(Dog.objects.filter(data__has_key='owner'))
+# print(Dog.objects.filter(data__has_keys=['owner', 'breed']))
+# print(Dog.objects.filter(data__has_any_keys=['owner', 'breed']))
+
+
+# ---- Complex lookups with Q objects ----
+# print(
+#     Question.objects.get(
+#         Q(question_text__startswith='Wh')
+#     )
+# )
+
+
+# ---- Deleting objects ----
+b = Blog.objects.create(name="Deleting test",
+                        tagline="test tagline for deleting method")
+print(b.delete())
