@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <style>
+      p {
+        font-size: 5em;
+        color: darkcyan;
+      }
+
+      input {
+        font-size: 1em;
+        color: MidnightBlue;
+        width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <p> {{ text }} </p>
+    <p> {% csrf_token %} </p>
+    <script>
+      document.getElementsByTagName("input")[0].type = "visible";
+    </script>
+  </body>
+</html>

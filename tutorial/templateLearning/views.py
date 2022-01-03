@@ -9,3 +9,19 @@ def templateVariable_test(request):
         'templateLearning/templateVariable_test.html',
         context
     )
+
+
+def csrfToken_test(request):
+    context = {'text': 'CSRF token is below there.'}
+    return render(
+        request,
+        'templateLearning/csrfToken_test.html',
+        context
+    )
+
+
+def staticFile_test(request):
+    return render(
+        request,
+        'templateLearning/staticFile_test.html',
+    )
