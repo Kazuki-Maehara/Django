@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'learningURLdispatcher.apps.LearningurldispatcherConfig',
     'templateLearning.apps.TemplatelearningConfig',
+    'aggregationLearning.apps.AggregationlearningConfig',
     'queriesLearning',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
