@@ -20,5 +20,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('URLdispatcher/', include('learningURLdispatcher.urls')),
     path('templateLearning/', include('templateLearning.urls')),
+    # path('aggregationLearning/', include('aggregationLearning.urls')),
     path('admin/', admin.site.urls),
 ]
