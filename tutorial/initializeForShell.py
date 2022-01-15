@@ -81,7 +81,19 @@
 # print(b.delete())
 
 
+# ------- About aggregation -------
 from aggregationLearning.models import Author, Publisher, Store, Book
+from django.db.models import Avg, Max, Min
+from django.db.models import Count
 
-from django.db.models import Avg
-print(Book.objects.all().aggregate(Avg('price')))
+# print(Book.objects.all().count())
+# print(Book.objects.all().aggregate(Avg('price')))
+# print(Book.objects.all().aggregate(Max('price')))
+# print(Book.objects.all().aggregate(Min('price')))
+#
+print(Book.objects.all())
+
+q = Book.objects.annotate(Count('authors'))
+
+for author in q:
+    print(author.name, ": ", author.authors__count)
