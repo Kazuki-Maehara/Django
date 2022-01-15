@@ -1,14 +1,14 @@
-from queriesLearning.models import Entry
-from queriesLearning.models import Blog
-from queriesLearning.models import Author
-from queriesLearning.models import Dog
-
-from polls.models import Question
-
-from django.db.models import F
-from django.db.models import Q
-import datetime
-from datetime import timedelta
+# from queriesLearning.models import Entry
+# from queriesLearning.models import Blog
+# from queriesLearning.models import Author
+# from queriesLearning.models import Dog
+#
+# from polls.models import Question
+#
+# from django.db.models import F
+# from django.db.models import Q
+# import datetime
+# from datetime import timedelta
 
 
 # ---- Retrieving objects ----
@@ -76,6 +76,12 @@ from datetime import timedelta
 
 
 # ---- Deleting objects ----
-b = Blog.objects.create(name="Deleting test",
-                        tagline="test tagline for deleting method")
-print(b.delete())
+# b = Blog.objects.create(name="Deleting test",
+#                         tagline="test tagline for deleting method")
+# print(b.delete())
+
+
+from aggregationLearning.models import Author, Publisher, Store, Book
+
+from django.db.models import Avg
+print(Book.objects.all().aggregate(Avg('price')))
