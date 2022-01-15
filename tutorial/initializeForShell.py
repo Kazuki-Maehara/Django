@@ -91,9 +91,25 @@ from django.db.models import Count
 # print(Book.objects.all().aggregate(Max('price')))
 # print(Book.objects.all().aggregate(Min('price')))
 #
-print(Book.objects.all())
+# print(Book.objects.all())
+#
+# q = Book.objects.annotate(Count('authors'))
+#
+# for author in q:
+#     print(author.name, ": ", author.authors__count)
 
-q = Book.objects.annotate(Count('authors'))
 
-for author in q:
-    print(author.name, ": ", author.authors__count)
+# book = Book.objects.first()
+#
+# print(book.authors.count())
+#
+# print(book.store_set.count())
+#
+# q = Book.objects.annotate(Count('authors'), Count('store'))
+# print(q[0].authors__count)
+# print(q[0].store__count)
+
+q = Book.objects.annotate(
+    Count('authors', distinct=True), Count('store', distinct=True))
+print(q[0].authors__count)
+print(q[0].store__count)
