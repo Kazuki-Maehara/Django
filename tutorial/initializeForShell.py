@@ -83,7 +83,7 @@
 
 # ------- About aggregation -------
 from aggregationLearning.models import Author, Publisher, Store, Book
-from django.db.models import Avg, Max, Min
+from django.db.models import Avg, Max, Min, Sum
 from django.db.models import Count
 
 # print(Book.objects.all().count())
@@ -114,12 +114,26 @@ from django.db.models import Count
 # print(q[0].authors__count)
 # print(q[0].store__count)
 
-q = Store.objects.annotate(min_price=Min('books__price'),
-                           max_price=Max('books__price'))
-print(type(q))
-print(type(q[0]))
+# q = Store.objects.annotate(min_price=Min('books__price'),
+#                            max_price=Max('books__price'))
+# print(type(q))
+# print(type(q[0]))
+#
+# for one in q:
+#     print("in " + str(one) + ":")
+#     print(" " * 2 + "Max price is " + str(one.max_price) + " "
+#           + "and Min price is " + str(one.min_price))
 
-for one in q:
-    print("in " + str(one) + ":")
-    print(" " * 2 + "Max price is " + str(one.max_price) + " "
-          + "and Min price is " + str(one.min_price))
+# print(Store.objects.aggregate(min_price=Min(
+#     'books__price'), max_price=Max('books__price')))
+
+# print(Store.objects.aggregate(youngest_age=Min('books__authors__age')))
+
+
+# q = Publisher.objects.annotate(Count('book'))
+#
+# for one in q:
+#     print(one.book__count)
+
+q = Publisher.objects.aggregate(oldest_pubdate=Min('book__pubdate'))
+print(q)
