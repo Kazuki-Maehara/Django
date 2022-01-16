@@ -109,7 +109,17 @@ from django.db.models import Count
 # print(q[0].authors__count)
 # print(q[0].store__count)
 
-q = Book.objects.annotate(
-    Count('authors', distinct=True), Count('store', distinct=True))
-print(q[0].authors__count)
-print(q[0].store__count)
+# q = Book.objects.annotate(
+#     Count('authors', distinct=True), Count('store', distinct=True))
+# print(q[0].authors__count)
+# print(q[0].store__count)
+
+q = Store.objects.annotate(min_price=Min('books__price'),
+                           max_price=Max('books__price'))
+print(type(q))
+print(type(q[0]))
+
+for one in q:
+    print("in " + str(one) + ":")
+    print(" " * 2 + "Max price is " + str(one.max_price) + " "
+          + "and Min price is " + str(one.min_price))
