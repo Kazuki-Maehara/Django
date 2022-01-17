@@ -85,6 +85,7 @@
 from aggregationLearning.models import Author, Publisher, Store, Book
 from django.db.models import Avg, Max, Min, Sum
 from django.db.models import Count
+from django.db.models import Q
 
 # print(Book.objects.all().count())
 # print(Book.objects.all().aggregate(Avg('price')))
@@ -98,21 +99,22 @@ from django.db.models import Count
 # for author in q:
 #     print(author.name, ": ", author.authors__count)
 
-
+#
 # book = Book.objects.first()
+# print(book)
 #
 # print(book.authors.count())
-#
 # print(book.store_set.count())
 #
 # q = Book.objects.annotate(Count('authors'), Count('store'))
-# print(q[0].authors__count)
-# print(q[0].store__count)
-
+# print(q[1])
+# print(q[1].authors__count)
+# print(q[1].store__count)
+#
 # q = Book.objects.annotate(
 #     Count('authors', distinct=True), Count('store', distinct=True))
-# print(q[0].authors__count)
-# print(q[0].store__count)
+# print(q[1].authors__count)
+# print(q[1].store__count)
 
 # q = Store.objects.annotate(min_price=Min('books__price'),
 #                            max_price=Max('books__price'))
@@ -126,7 +128,7 @@ from django.db.models import Count
 
 # print(Store.objects.aggregate(min_price=Min(
 #     'books__price'), max_price=Max('books__price')))
-
+#
 # print(Store.objects.aggregate(youngest_age=Min('books__authors__age')))
 
 
@@ -135,5 +137,33 @@ from django.db.models import Count
 # for one in q:
 #     print(one.book__count)
 
-q = Publisher.objects.aggregate(oldest_pubdate=Min('book__pubdate'))
-print(q)
+# q = Publisher.objects.aggregate(oldest_pubdate=Min('book__pubdate'))
+# print(q)
+
+# q = Author.objects.annotate(total_pages=Sum('book__pages'))
+# for one in q:
+#     print(one.total_pages)
+
+# print(Author.objects.aggregate(average_rating=Avg('book__rating')))
+#
+# q = Author.objects.annotate(Avg('book__rating'))
+# for one in q:
+#     print(one.book__rating__avg)
+
+# q = Book.objects.filter(name__startswith='Django').annotate(
+#     num_authors=Count('authors'))
+#
+# for one in q:
+#     print(one.num_authors)
+
+
+# q = Book.objects.filter(name__startswith="Django").aggregate(Avg('price'))
+# print(q)
+
+# highly_rated = Count('book', filter=Q(book__rating__gte=7))
+# q = Author.objects.annotate(num_books=Count(
+#     'book'), highly_rated_books=highly_rated)
+#
+# for one in q:
+#     print(str(one) + ": ")
+#     print(one.num_books, one.highly_rated_books)
