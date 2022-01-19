@@ -17,4 +17,19 @@ urlpatterns = [
         views.staticFile_test,
         name='staticFile_test'
     ),
+    path(
+        'form_test/',
+        views.form_test,
+        name='form_test'
+    ),
+    path(
+        'form_more_test/',
+        views.form_more_test,
+        name='form_more_test'
+    ),
+    path(
+        'name_checked/',
+        views.name_checked,
+        name='name_checked'
+    ),
 ]
