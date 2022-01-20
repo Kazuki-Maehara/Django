@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <form action="/templateLearning/form_more_test/" method="post">
+      {% csrf_token %}
+      <!-- {{ form.as_p }} -->
+      <table>
+        {{ form.as_table }}
+      </table>
+      <!-- <li>
+        {{ form.as_ul }}
+      </li> -->
+      <input type="submit" valid="Submit">
+    </form>
+  </body>
+</html>
