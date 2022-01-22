@@ -167,3 +167,11 @@ from django.db.models import Q
 # for one in q:
 #     print(str(one) + ": ")
 #     print(one.num_books, one.highly_rated_books)
+
+
+# ------- Search -------
+
+# This is a very fragile solution as it requires the user to know an exact substring of the author's name.
+# A better approach could be a case-insensitive match(icontains), but this is only marginally better.
+
+print(Author.objects.filter(name__contains="Thomas"))
