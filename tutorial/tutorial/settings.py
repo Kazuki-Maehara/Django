@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'viewLearning.apps.ViewlearningConfig',
     'learningURLdispatcher.apps.LearningurldispatcherConfig',
     'templateLearning.apps.TemplatelearningConfig',
     'aggregationLearning.apps.AggregationlearningConfig',
