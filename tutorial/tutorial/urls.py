@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
+    path('viewLearning/', include('viewLearning.urls')),
     path('URLdispatcher/', include('learningURLdispatcher.urls')),
     path('templateLearning/', include('templateLearning.urls')),
     # path('aggregationLearning/', include('aggregationLearning.urls')),
