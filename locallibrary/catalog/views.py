@@ -38,4 +38,13 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    
+    # your own name for the list as a template variable
+    # context_object_name = 'my_book_list'
+    # Get 5 books containing the title "javascript"
+    # queryset = Book.objects.filter(title__icontains='javascript')[:5]
+    # Specify your own template name/location
+    # template_name = 'books/my_arbitrary_template_name_list.html'
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
