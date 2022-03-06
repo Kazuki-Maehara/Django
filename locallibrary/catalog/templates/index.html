@@ -12,6 +12,8 @@
     <li><strong>Authors:</strong> {{ num_authors }}</li>
     <li><strong>Books (whoose title contains "javascript"):</strong> {{ num_book_contains_javascript }}</li>
   </ul>
+
+  <p>You have visited this page {{ num_visits }} time {{ num_visites|pluralize }}.</p>
 {% endblock %}
 
 {% block title %}
