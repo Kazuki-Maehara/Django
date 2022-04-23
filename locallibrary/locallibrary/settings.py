@@ -21,10 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-*f$^d8$ocebwmg&g%eqwe+gxd)yuubi95nr2s9*wiieh@!8sd'
+# SECRET_KEY = '-*f$^d8$ocebwmg&g%eqwe+gxd)yuubi95nr2s9*wiieh@!8sd'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    '-*f$^d8$ocebwmg&g%eqwe+gxd)yuubi95nr2s9*wiieh@!8sd',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -126,3 +131,7 @@ STATIC_URL = '/static/'
 
 # Redirect to home URL after login (Default redirections to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+# To allow testing The Password Reset System
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

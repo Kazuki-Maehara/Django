@@ -74,6 +74,7 @@ class BookDetailView(generic.DetailView):
 
 class AuthorListView(generic.ListView):
     model = Author
+    paginate_by = 10
 
 
 class AuthorDetailView(generic.DetailView):
@@ -131,19 +132,19 @@ def renew_book_librarian(request, pk):
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
         form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
 
-        context = {
-            'form': form,
-            'book_instance': book_instance,
-        }
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
 
-        return render(request, 'catalog/book_renew_librarian.html', context)
+    return render(request, 'catalog/book_renew_librarian.html', context)
 
 
 # ----- For Generic Editing View -----
 class AuthorCreate(CreateView):
     model = Author
     fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
-    initial = {'date_of_death': '11/06/2020'}
+    initial = {'date_of_birth': '11/06/1998'}
 
 
 class AuthorUpdate(UpdateView):
@@ -155,3 +156,19 @@ class AuthorUpdate(UpdateView):
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+
+
+class BookCreate(CreateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', ]
+
+
+class BookUpdate(UpdateView):
+    model = Book
+    # Not recommended (potential security issue if more fields added)
+    fields = '__all__'
+
+
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')
